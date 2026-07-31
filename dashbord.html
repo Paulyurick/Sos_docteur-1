@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOS DOCTEUR - Espace Urgentiste</title>
+    <link rel="stylesheet" href="global.css/dashbord.css">
+</head>
+
+    <!-- NAVBAR PILL URGENTISTE -->
+    <nav class="custom-nav-wrapper">
+        <div class="custom-nav">
+            <div class="nav-brand">
+                <img src="assets/logodoc.jpeg" alt="SOS DOCTEUR" class="brand-logo">
+                <span class="brand-title">SOS DOCTEUR <small class="role-badge">PRO</small></span>
+            </div>
+
+            <ul class="nav-links">
+                <li><a href="#" class="nav-link active" onclick="switchDoctorTab('alerts-section', this)">Alertes (2)</a></li>
+                <li><a href="#" class="nav-link" onclick="switchDoctorTab('patients-section', this)">Consultations</a></li>
+                <li><a href="#" class="nav-link" onclick="switchDoctorTab('chat-section', this)">Messagerie</a></li>
+            </ul>
+
+            <div class="nav-action">
+                <span class="status-indicator online">🟢 En Garde</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- SECTION 1 : FILED'ATTENTE DES ALERTES SOS -->
+    <section id="alerts-section" class="tab-content active">
+        <div class="dashboard-header">
+            <h2>🚨 Urgences Signalées en Temps Réel</h2>
+            <p>Interventions requises dans votre secteur</p>
+        </div>
+
+        <div class="alerts-container">
+            <!-- CARTE D'ALERTE 1 (CRITIQUE) -->
+            <div class="alert-card critical">
+                <div class="alert-header">
+                    <span class="badge-danger">URGENCE CRITIQUE</span>
+                    <span class="alert-time">Il y a 2 min</span>
+                </div>
+                <div class="alert-body">
+                    <h3>Patient : Jean Ondo</h3>
+                    <p>📍 <strong>Localisation :</strong> Akanda, Libreville (à 2.4 km)</p>
+                    <p>💬 <strong>Signalement :</strong> Malaises thoraciques & difficultés respiratoires.</p>
+                </div>
+                <div class="alert-actions">
+                    <button class="btn-action primary" onclick="acceptEmergency('Jean Ondo')">⚡ Prendre en charge</button>
+                    <button class="btn-action secondary" onclick="callPatient('+24107000000')">📞 Appeler</button>
+                </div>
+            </div>
+
+            <!-- CARTE D'ALERTE 2 (MODÉRÉE) -->
+            <div class="alert-card warning">
+                <div class="alert-header">
+                    <span class="badge-warning">URGENCE MODÉRÉE</span>
+                    <span class="alert-time">Il y a 8 min</span>
+                </div>
+                <div class="alert-body">
+                    <h3>Patient : Marie Mba</h3>
+                    <p>📍 <strong>Localisation :</strong> Charbonnages, Libreville (à 5.1 km)</p>
+                    <p>💬 <strong>Signalement :</strong> Fièvre forte persistante chez enfant.</p>
+                </div>
+                <div class="alert-actions">
+                    <button class="btn-action primary" onclick="acceptEmergency('Marie Mba')">⚡ Prendre en charge</button>
+                    <button class="btn-action secondary" onclick="callPatient('+24107000001')">📞 Appeler</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SECTION 2 : HISTORIQUE DES CONSULTATIONS -->
+    <section id="patients-section" class="tab-content">
+        <h2 class="section-title">Prises en charge récentes</h2>
+        <div class="table-card">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>Patient</th>
+                        <th>Secteur</th>
+                        <th>Heure</th>
+                        <th>Statut</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Paul Nzue</td>
+                        <td>Louis</td>
+                        <td>14:30</td>
+                        <td><span class="status-done">Terminé</span></td>
+                    </tr>
+                    <tr>
+                        <td>Awa Bongo</td>
+                        <td>Owendo</td>
+                        <td>11:15</td>
+                        <td><span class="status-transferred">Evacué CHUL</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- SECTION 3 : MESSAGERIE MÉDECIN -->
+    <section id="chat-section" class="tab-content">
+        <h2 class="section-title">Discussions Patients</h2>
+        <div class="chat-container">
+            <div class="chat-list">
+                <div class="chat-item active">
+                    <div class="chat-avatar">👤</div>
+                    <div class="chat-info">
+                        <h4>Jean Ondo</h4>
+                        <p class="chat-sub">Urgence Akanda</p>
+                    </div>
+                </div>
+            </div>
+            <div class="chat-box">
+                <div class="chat-messages">
+                    <div class="message patient">Bonjour Docteur, j'ai une forte douleur à la poitrine.</div>
+                </div>
+                <div class="chat-input-wrapper">
+                    <input type="text" placeholder="Répondre au patient..." class="chat-input">
+                    <button class="btn-send">Envoyer</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCRIPT DU DASHBOARD URGENTISTE -->
+    <script>
+        function switchDoctorTab(sectionId, clickedLink) {
+            document.querySelectorAll('.tab-content').forEach(sec => sec.classList.remove('active'));
+            document.querySelectorAll('.nav-link').forEach(link => link.classList.remove('active'));
+
+            document.getElementById(sectionId).classList.add('active');
+            clickedLink.classList.add('active');
+        }
+
+        function acceptEmergency(patientName) {
+            alert("Prise en charge confirmée pour " + patientName + ". La feuille de route GPS a été générée.");
+        }
+
+        function callPatient(phone) {
+            window.location.href = "tel:" + phone;
+        }
+    </script>
+    <script src="JS/auth.js"></script>
+</body>
+</html>

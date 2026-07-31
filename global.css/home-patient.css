@@ -1,0 +1,399 @@
+/* ========================================== */
+/* CHARTE GRAPHIQUE ET IMAGE DE FOND GLOBAL   */
+/* ========================================== */
+:root {
+    --primary-blue: #0056b3;
+    --primary-hover: #003d80;
+    --nav-bg: blue; /* Vert très sombre (style pill Olivia) */
+    --accent-yellow: #eab308;
+    --danger-red: #d9534f;
+    --text-dark: #1a1a1a;
+    --text-muted: #666666;
+    --card-bg: rgba(255, 255, 255, 0.95);
+    --border-color: #e5e7eb;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+body {
+    min-height: 100vh;
+    color: #ffffff;
+    
+    /* 1. IMAGE DE FOND DIFFÉRENTE DU LOGO + FILTRE SOMBRE */
+    background-image: 
+        linear-gradient(rgba(10, 25, 47, 0.80), rgba(10, 25, 47, 0.88)), 
+        url('image.jpeg'); /* <-- Nom de ton image d'arrière-plan */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    padding-bottom: 40px;
+}
+
+/* ========================================== */
+/* NAVBAR FLOTTANTE STYLE PILL (MODÈLE OLIVIA) */
+/* ========================================== */
+.custom-nav-wrapper {
+    position: sticky;
+    top: 20px;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.custom-nav {
+    background-color: var(--nav-bg);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 950px;
+    padding: 8px 12px 8px 16px;
+    border-radius: 50px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+.nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.brand-logo {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: var(--accent-yellow); /* Badge autour du logo */
+    padding: 2px;
+}
+
+.brand-title {
+    color: #ffffff;
+    font-weight: 700;
+    font-size: 1.1rem;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    list-style: none;
+}
+
+.nav-link {
+    color: #a3b8cc;
+    text-decoration: none;
+    font-size: 0.95rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.nav-link:hover {
+    color: #ffffff;
+}
+
+.nav-link.active {
+    color: var(--accent-yellow);
+    font-weight: 600;
+}
+
+.btn-pill {
+    background-color: #ffffff;
+    color: var(--nav-bg);
+    border: none;
+    padding: 10px 22px;
+    border-radius: 40px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+}
+
+.btn-pill:hover {
+    background-color: #f1f5f9;
+    transform: translateY(-1px);
+}
+
+/* ========================================== */
+/* SECTIONS DYNAMIQUES & ONGLETS              */
+/* ========================================== */
+.tab-content {
+    display: none;
+    max-width: 950px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.tab-content.active {
+    display: block;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(6px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.section-title {
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+}
+
+/* SECTION HOME */
+.hero-emergency {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.hero-emergency h1 {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.hero-emergency p {
+    font-size: 1rem;
+    opacity: 0.9;
+    margin-bottom: 25px;
+}
+
+.btn-sos {
+    background-color: var(--danger-red);
+    color: #ffffff;
+    border: none;
+    padding: 16px 32px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 8px 25px rgba(217, 83, 79, 0.5);
+    transition: transform 0.2s;
+}
+
+.btn-sos:hover {
+    transform: translateY(-2px);
+}
+
+.quick-status-card {
+    background: var(--card-bg);
+    color: var(--text-dark);
+    padding: 20px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+}
+
+/* SECTION SERVICES */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 18px;
+}
+
+.service-card {
+    background: var(--card-bg);
+    color: var(--text-dark);
+    padding: 22px;
+    border-radius: 14px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card-icon {
+    font-size: 2rem;
+    margin-bottom: 10px;
+}
+
+.service-card h3 {
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+}
+
+.service-card p {
+    font-size: 0.88rem;
+    color: var(--text-muted);
+    margin-bottom: 16px;
+}
+
+.btn-card {
+    background: #f1f5f9;
+    color: var(--primary-blue);
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* SECTION MESSAGERIE */
+.chat-container {
+    background: var(--card-bg);
+    color: var(--text-dark);
+    border-radius: 16px;
+    display: flex;
+    min-height: 360px;
+    overflow: hidden;
+}
+
+.chat-list {
+    width: 35%;
+    background: #f8fafc;
+    border-right: 1px solid var(--border-color);
+    padding: 15px;
+}
+
+.chat-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    background: #ffffff;
+    border-radius: 10px;
+}
+
+.chat-box {
+    width: 65%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.message.doctor {
+    background: #e0f2fe;
+    color: #0369a1;
+    padding: 10px 14px;
+    border-radius: 12px 12px 12px 0;
+    max-width: 80%;
+    font-size: 0.9rem;
+}
+
+.chat-input-wrapper {
+    display: flex;
+    gap: 10px;
+}
+
+.chat-input {
+    flex: 1;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+}
+
+.btn-send {
+    background: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* ========================================== */
+/* MODALE NUMÉROS D'URGENCE                   */
+/* ========================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.65);
+    backdrop-filter: blur(4px);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 2000;
+    padding: 20px;
+}
+
+.modal-overlay.active {
+    display: flex;
+}
+
+.modal-card {
+    background: #ffffff;
+    color: var(--text-dark);
+    width: 100%;
+    max-width: 480px;
+    border-radius: 16px;
+    padding: 25px;
+    position: relative;
+}
+
+.modal-close {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: #666;
+}
+
+.modal-header h2 {
+    color: var(--danger-red);
+    font-size: 1.25rem;
+    margin-bottom: 4px;
+}
+
+.modal-header p {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+}
+
+.emergency-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.emergency-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background: #f8f9fa;
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    text-decoration: none;
+    color: var(--text-dark);
+}
+
+.emergency-info strong {
+    display: block;
+    font-size: 0.9rem;
+}
+
+.emergency-info span {
+    font-size: 0.78rem;
+    color: var(--text-muted);
+}
+
+.call-btn {
+    background: var(--danger-red);
+    color: white;
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+
+/* RESPONSIVE */
+@media (max-width: 640px) {
+    .nav-links { display: none; }
+    .chat-container { flex-direction: column; }
+    .chat-list, .chat-box { width: 100%; }
+}
